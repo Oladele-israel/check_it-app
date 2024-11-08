@@ -1,6 +1,13 @@
-import { User, Box, AlertCircle } from "lucide-react";
-import Card from "../components/Card";
+import { Box, AlertCircle } from "lucide-react";
 
+import Card from "../components/Card";
+import UserIcon from "../components/UserIcon";
+import ExpiredTable from "../components/ExpiredTable";
+import SecondTable from "../components/SecondTable";
+import Chart from "../components/Chart";
+import Modal from "../components/utils/Modal";
+
+// chart Data
 const CardData = [
   {
     title: "Inventory",
@@ -20,11 +27,13 @@ const CardData = [
   },
 ];
 
+// data for the cards
+
 const Dashboard = () => {
   return (
-    <div className="w-screen">
+    <div className="w-screen ">
       <UserIcon />
-      <div className="grid gap-6 md:grid-cols-2 p-4 w-[94%]">
+      <div className="grid gap-6 md:grid-cols-2 ml-auto mr-auto lg:m-0 p-4 w-[94%]">
         {/* Map through CardData array to render Card components */}
         {CardData.map((card, index) => (
           <Card
@@ -38,16 +47,14 @@ const Dashboard = () => {
           />
         ))}
       </div>
+      <div className="w-screen bg-gray-50 flex flex-col lg:flex-row lg:items-center lg:gap-10 ">
+        <Chart />
+        <SecondTable />
+      </div>
+      <ExpiredTable />
+      <Modal />
     </div>
   );
 };
 
 export default Dashboard;
-
-const UserIcon = () => {
-  return (
-    <div className="hidden lg:flex justify-end items-center gap-2 p-4 w-[93%]">
-      <User className="w-8 h-8 rounded-full bg-gray-200 p-1" />
-    </div>
-  );
-};
